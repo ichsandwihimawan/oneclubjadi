@@ -24,10 +24,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'es9jyo4w!8t7pux00p*ett4^a5_l(_nxv9oq5419)hdp8r6-u8'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 # DEBUG_PROPAGATE_EXCEPTIONS = True
 ALLOWED_HOSTS = ['http://localhost:8000','https:oneclub.herokuapp.com']
-# SECURE_SSL_REDIRECT = True
+SECURE_SSL_REDIRECT = True
 # Application definition
 
 INSTALLED_APPS = [
@@ -67,7 +67,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                # 'user_management.custom_context_processor.globalContext',
+                'user_management.custom_context_processor.globalContext',
             ],
         },
     },
