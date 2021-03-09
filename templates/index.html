@@ -1,0 +1,789 @@
+{% load static %}
+{% load humanize %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Admin Dashboard OneClub</title>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com"/>
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    <link
+            href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap"
+            rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.css' %}"/>
+
+    <link rel="stylesheet" href="{% static 'assets/vendors/iconly/bold.css' %}"/>
+    <link
+            rel="stylesheet"
+            href="{% static 'assets/vendors/perfect-scrollbar/perfect-scrollbar.css' %}"
+    />
+    <link
+            rel="stylesheet"
+            href="{% static 'assets/vendors/bootstrap-icons/bootstrap-icons.css' %}"
+    />
+    <link rel="stylesheet" href="{% static 'assets/css/app.css' %}"/>
+    <link
+            rel="shortcut icon"
+            href="{% static 'assets/images/favicon.svg' %}"
+            type="image/x-icon"
+    />
+</head>
+
+<body>
+<div id="app">
+    {% include "snippets/sidebar.html" %}
+    <div id="main" class="layout-navbar">
+        {% include "snippets/topbar.html" %}
+
+        <!-- CONTENT -->
+        <div id="main-content">
+            <div class="page-heading">
+                <div class="page-content">
+                    <section class="row">
+                        <div class="col-lg-12">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                    <div class="card">
+                                        <div class="card-body px-3 py-4-5" data-bs-toggle="modal"
+                                             data-bs-target="#exampleModal2" style="cursor:pointer">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="stats-icon purple">
+                                                        <i class="iconly-boldShow"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <h6 class="text-muted font-semibold">STAR</h6>
+                                                    <p style="color: black;">RP {{total_star|intcomma}}</p>
+                                                </div>
+
+                                                <div class="modal fade" id="exampleModal2" tabindex="-1"
+                                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered modal-lg">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title"></h5>
+                                                                <button type="button" class="btn-close"
+                                                                        data-bs-dismiss="modal"
+                                                                        aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="row mb-3">
+                                                                    <div>
+                                                                        <h1 class="col-md-12 text-center"><b>PAKET
+                                                                            ONECLUB STAR</b></h1>
+                                                                        <div class="ms-5 mt-4">
+                                                                            <p><b>- MAKSIMALISASI PROFIT SAMPAI 0.7 %
+                                                                                SETIAP HARINYA</b></p>
+                                                                            <p><b>- PERIODE KONTRAK 12 MINGGU</b></p>
+                                                                            <p><b>- OTOMATISASI WITHDRAWAL SETIAP
+                                                                                MINGGUNYA </b></p>
+                                                                            <p><b>- BONUS AFILIASI HINGGA 3 GENERASI</b>
+                                                                            </p>
+                                                                        </div>
+                                                                        <hr>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row mb-3">
+                                                                    <div class="col-6">
+                                                                        <div class="form-group">
+                                                                            <input type="number"
+                                                                                   class="form-control ms-5"
+                                                                                   id="star-amt"
+                                                                                   placeholder="1.000.000"
+                                                                                   formnovalidate="formnovalidate"
+                                                                                   required
+                                                                            >
+
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-1"></div>
+                                                                    <div class="col-2">
+                                                                        <button class="btn btn-primary mx-2"
+                                                                                data-jenis="star" id="star-btn">Purchase
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                    <div class="card">
+                                        <div class="card-body px-3 py-4-5" data-bs-toggle="modal"
+                                             data-bs-target="#exampleModal3" style="cursor:pointer">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="stats-icon blue">
+                                                        <i class="iconly-boldProfile"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <h6 class="text-muted font-semibold">VIP</h6>
+                                                    <p style="color: black;">RP {{total_vip|intcomma}}</p>
+
+                                                </div>
+                                                <div class="modal fade" id="exampleModal3" tabindex="-1"
+                                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered modal-lg">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title"></h5>
+                                                                <button type="button" class="btn-close"
+                                                                        data-bs-dismiss="modal"
+                                                                        aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="row mb-3">
+                                                                    <div>
+                                                                        <h1 class="col-md-12 text-center"><b>PAKET
+                                                                            ONECLUB VIP</b></h1>
+                                                                        <div class="ms-5 mt-4">
+                                                                            <p><b>- MAKSIMALISASI PROFIT SAMPAI 1 %
+                                                                                SETIAP HARINYA</b></p>
+                                                                            <p><b>- PERIODE KONTRAK 12 MINGGU</b></p>
+                                                                            <p><b>- OTOMATISASI WITHDRAWAL SETIAP
+                                                                                MINGGUNYA </b></p>
+                                                                            <p><b>- BONUS AFILIASI HINGGA 3 GENERASI</b>
+                                                                            </p>
+                                                                        </div>
+                                                                        <hr>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row mb-3">
+                                                                    <div class="col-6">
+                                                                        <div class="form-group">
+                                                                            <input type="number"
+                                                                                   class="form-control ms-5"
+                                                                                   id="vip-amt"
+                                                                                   placeholder="100.000.000">
+
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-1"></div>
+                                                                    <div class="col-2">
+                                                                        <button class="btn btn-primary mx-2"
+                                                                                data-jenis="vip" id="vip-btn">Purchase
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                    <div class="card">
+                                        <div class="card-body px-3 py-4-5" data-bs-toggle="modal"
+                                             data-bs-target="#exampleModal4" style="cursor:pointer">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="stats-icon green">
+                                                        <i class="iconly-boldAdd-User"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <h6 class="text-muted font-semibold">
+                                                        Deposit
+                                                    </h6>
+                                                    <p style="color: black;">RP {{user.data_user.balance|intcomma}}</p>
+                                                </div>
+                                                <div class="modal fade" id="exampleModal4" tabindex="-1"
+                                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered modal-lg">
+                                                        <div class="modal-content">
+                                                            <div class="modal-body">
+                                                                <div class="row">
+                                                                    <div class="col-12 pr-5 text-center">
+                                                                        <a href="" data-bs-toggle="modal"
+                                                                           data-bs-target="#border-less4"
+                                                                        >
+                                                                            <img src="{% static 'assets/images/logo_bank.png' %}"
+                                                                                 class="pl-5" style="margin-right: 50px;"
+                                                                                 alt="bk1">
+                                                                            <div
+                                                                                    class="modal fade text-left modal-borderless"
+                                                                                    id="border-less4"
+                                                                                    tabindex="-1"
+                                                                                    role="dialog"
+                                                                                    aria-labelledby="myModalLabel1"
+                                                                                    aria-hidden="true"
+                                                                            >
+                                                                                <div
+                                                                                        class="modal-dialog modal-dialog-scrollable modal-lg"
+                                                                                        role="document"
+                                                                                >
+                                                                                    <div class="modal-content ">
+                                                                                        <div class="modal-header ">
+                                                                                            <h5 class="modal-title ">Form
+                                                                                                Deposit BCA</h5>
+                                                                                            <button
+                                                                                                    type="button"
+                                                                                                    class="close rounded-pill"
+                                                                                                    data-bs-dismiss="modal"
+                                                                                                    aria-label="Close"
+                                                                                            >
+                                                                                                <i data-feather="x"></i>
+                                                                                            </button>
+                                                                                        </div>
+                                                                                        <div class="modal-body">
+                                                                                            <div class="card rounded-0 checkout-detail">
+                                                                                                <div class="card-body">
+                                                                                                    <form id="depo-bca">
+                                                                                                        <h5 class="card-title "
+                                                                                                            style="margin-bottom: 30px;">
+                                                                                                            Informasi
+                                                                                                            Investor</h5>
+                                                                                                        <div class="row mb-3">
+                                                                                                            <div class="col-6">
+                                                                                                                <h6>
+                                                                                                                    Nama
+                                                                                                                    Bank</h6>
+                                                                                                            </div>
+                                                                                                            <input type="hidden"
+                                                                                                                   name="via_bank"
+                                                                                                                   value="bca">
+                                                                                                            <div class="col-6">
+                                                                                                                <h6 class="m-0 align-self-center text-success">
+                                                                                                                    <div class="form-group col-12">
+                                                                                                                        <input type="text"
+                                                                                                                               class="form-control"
+                                                                                                                               id="basicInput"
+                                                                                                                               placeholder="Nama Bank"
+                                                                                                                               name="nama_bank">
+                                                                                                                    </div>
+                                                                                                                </h6>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                        <div class="row mb-3">
+                                                                                                            <div class="col-6">
+                                                                                                                <h6 class="m-0">
+                                                                                                                    Nama
+                                                                                                                    Pemilik
+                                                                                                                    Rekening</h6>
+                                                                                                            </div>
+                                                                                                            <div class="col-6">
+                                                                                                                <h6 class="m-0 align-self-center text-success">
+                                                                                                                    <div class="form-group col-12">
+                                                                                                                        <input type="text"
+                                                                                                                               class="form-control"
+                                                                                                                               id="basicInput"
+                                                                                                                               placeholder="Nama Pemilik Rekening"
+                                                                                                                               name="nama_pemilik_rekening"
+                                                                                                                        >
+
+                                                                                                                    </div>
+                                                                                                                </h6>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                        <div class="row mb-3">
+                                                                                                            <div class="col-6">
+                                                                                                                <h6 class="m-0">
+                                                                                                                    Nomor
+                                                                                                                    Rekening</h6>
+                                                                                                            </div>
+                                                                                                            <div class="col-6">
+                                                                                                                <div class="form-group">
+                                                                                                                    <input type="text"
+                                                                                                                           class="form-control"
+                                                                                                                           id="basicInput"
+                                                                                                                           placeholder="Nomor Rekening"
+                                                                                                                           name="no_rekening"
+                                                                                                                    >
+
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+
+                                                                                                        <hr>
+                                                                                                        <div class="row mb-3">
+                                                                                                            <div class="col-6">
+                                                                                                                <h6 class="m-0">
+                                                                                                                    Amount</h6>
+                                                                                                            </div>
+                                                                                                            <div class="col-6">
+                                                                                                                <div class="form-group">
+                                                                                                                    <input type="number"
+                                                                                                                           class="form-control"
+                                                                                                                           id="amt-bca"
+                                                                                                                           placeholder="100.000.000"
+                                                                                                                           name="nominal"
+                                                                                                                    >
+
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+
+                                                                                                        <div class="row mb-3">
+                                                                                                            <h6>Silahkan
+                                                                                                                Transfer ke
+                                                                                                                rekening
+                                                                                                                berikut</h6>
+                                                                                                            <br>
+                                                                                                            <div class="row mt-2"
+                                                                                                                 style="text-align:lef">
+                                                                                                                <span class="text-bold">STEVEN CHOW</span>
+                                                                                                                <span class="text-bold">BCA</span>
+                                                                                                                <span class="text-bold">13513514135</span>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </form>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            </p>
+                                                                                        </div>
+                                                                                        <div class="modal-footer">
+                                                                                            <button
+                                                                                                    type="button"
+                                                                                                    class="btn btn-light-primary"
+                                                                                                    data-bs-dismiss="modal"
+                                                                                            >
+                                                                                                <i class="bx bx-x d-block d-sm-none"></i>
+                                                                                                <span class="d-none d-sm-block">Close</span>
+                                                                                            </button>
+                                                                                            <button
+                                                                                                    type="button"
+                                                                                                    class="btn btn-primary ml-1"
+                                                                                                    id="depo-bca-btn"
+                                                                                            >
+                                                                                                <span class="d-none d-sm-block">Submit</span>
+                                                                                            </button>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <br>
+                                                                    <br>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-12 pr-5 text-center">
+                                                                        <a href="" data-bs-toggle="modal"
+                                                                           data-bs-target="#border-less5"> <img
+                                                                                src="{% static 'assets/images/image 5.png' %}"
+                                                                                alt="ok" style="margin-right: 50px;">
+                                                                            <div
+                                                                                    class="modal fade text-left modal-borderless"
+                                                                                    id="border-less5"
+                                                                                    tabindex="-1"
+                                                                                    role="dialog"
+                                                                                    aria-labelledby="myModalLabel2"
+                                                                                    aria-hidden="true"
+                                                                            >
+                                                                                <div
+                                                                                        class="modal-dialog modal-dialog-scrollable modal-lg"
+                                                                                        role="document"
+                                                                                >
+                                                                                    <div class="modal-content ">
+                                                                                        <div class="modal-header ">
+                                                                                            <h5 class="modal-title ">Form
+                                                                                                Deposit MANDIRI
+                                                                                            </h5>
+                                                                                            <button
+                                                                                                    type="button"
+                                                                                                    class="close rounded-pill"
+                                                                                                    data-bs-dismiss="modal"
+                                                                                                    aria-label="Close"
+                                                                                            >
+                                                                                                <i data-feather="x"></i>
+                                                                                            </button>
+                                                                                        </div>
+                                                                                        <div class="modal-body">
+                                                                                            <div class="card rounded-0 checkout-detail">
+                                                                                                <div class="card-body">
+                                                                                                    <form id="depo-mandiri">
+                                                                                                        <h5 class="card-title "
+                                                                                                            style="margin-bottom: 30px;">
+                                                                                                            Informasi
+                                                                                                            Investor</h5>
+                                                                                                        <input type="hidden"
+                                                                                                               name="via_bank"
+                                                                                                               value="mandiri">
+                                                                                                        <div class="row mb-3">
+                                                                                                            <div class="col-6">
+                                                                                                                <h6 class="m-0">
+                                                                                                                    Nama
+                                                                                                                    Bank</h6>
+                                                                                                            </div>
+                                                                                                            <div class="col-6">
+                                                                                                                <h6 class="m-0 align-self-center text-success">
+                                                                                                                    <div class="form-group col-12">
+                                                                                                                        <input type="text"
+                                                                                                                               class="form-control"
+                                                                                                                               id="basicInput"
+                                                                                                                               placeholder="Nama Bank"
+                                                                                                                               name="nama_bank"
+                                                                                                                        >
+
+                                                                                                                    </div>
+                                                                                                                </h6>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                        <div class="row mb-3">
+                                                                                                            <div class="col-6">
+                                                                                                                <h6 class="m-0">
+                                                                                                                    Nama
+                                                                                                                    Pemilik
+                                                                                                                    Rekening</h6>
+                                                                                                            </div>
+                                                                                                            <div class="col-6">
+                                                                                                                <h6 class="m-0 align-self-center text-success">
+                                                                                                                    <div class="form-group col-12">
+                                                                                                                        <input type="text"
+                                                                                                                               class="form-control"
+                                                                                                                               id="basicInput"
+                                                                                                                               placeholder="Nama Pemilik Rekening"
+                                                                                                                               name="nama_pemilik_rekening"
+                                                                                                                        >
+
+                                                                                                                    </div>
+                                                                                                                </h6>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                        <div class="row mb-3">
+                                                                                                            <div class="col-6">
+                                                                                                                <h6 class="m-0">
+                                                                                                                    Nomor
+                                                                                                                    Rekening</h6>
+                                                                                                            </div>
+                                                                                                            <div class="col-6">
+                                                                                                                <div class="form-group">
+                                                                                                                    <input type="text"
+                                                                                                                           class="form-control"
+                                                                                                                           id="basicInput"
+                                                                                                                           placeholder="Nomor Rekening"
+                                                                                                                           name="no_rekening"
+                                                                                                                    >
+
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+
+                                                                                                        <hr>
+                                                                                                        <div class="row mb-3">
+                                                                                                            <div class="col-6">
+                                                                                                                <h6 class="m-0">
+                                                                                                                    Amount</h6>
+                                                                                                            </div>
+                                                                                                            <div class="col-6">
+                                                                                                                <div class="form-group">
+                                                                                                                    <input type="number"
+                                                                                                                           class="form-control"
+                                                                                                                           id="basicInput"
+                                                                                                                           placeholder="100.000.000"
+                                                                                                                           name="nominal"
+                                                                                                                    >
+
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+
+                                                                                                        <div class="row mb-3">
+                                                                                                            <h6>Silahkan
+                                                                                                                Transfer ke
+                                                                                                                rekening
+                                                                                                                berikut</h6>
+                                                                                                            <br>
+                                                                                                            <div class="row mt-2"
+                                                                                                                 style="text-align:lef">
+                                                                                                                <span class="text-bold">STEVEN CHOW</span>
+                                                                                                                <span class="text-bold">MANDIRI</span>
+                                                                                                                <span class="text-bold">222222222</span>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </form>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            </p>
+                                                                                        </div>
+                                                                                        <div class="modal-footer">
+                                                                                            <button
+                                                                                                    type="button"
+                                                                                                    class="btn btn-light-primary"
+                                                                                                    data-bs-dismiss="modal"
+                                                                                            >
+                                                                                                <i class="bx bx-x d-block d-sm-none"></i>
+                                                                                                <span class="d-none d-sm-block">Close</span>
+                                                                                            </button>
+                                                                                            <button
+                                                                                                    type="button"
+                                                                                                    class="btn btn-primary ml-1"
+                                                                                                    id="depo-mandiri-btn"
+                                                                                            >
+                                                                                                <i class="bx bx-check d-block d-sm-none"></i>
+                                                                                                <span class="d-none d-sm-block">Submit</span>
+                                                                                            </button>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                    <div class="card">
+                                        <div class="card-body px-3 py-4-5">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="stats-icon purple">
+                                                        <i class="iconly-boldShow"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <h6 class="text-muted font-semibold">Total Bonus</h6>
+                                                    <p style="color: black;">RP {{total_bonus|intcomma}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                    <div class="card">
+                                        <div class="card-body px-3 py-4-5" data-bs-toggle="modal"
+                                             data-bs-target="#exampleModal6" style="cursor:pointer">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="stats-icon green">
+                                                        <i class="iconly-boldAdd-User"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <h6 class="text-muted font-semibold">
+                                                        Bonus Afiliasi
+                                                    </h6>
+                                                    <p style="color: black;">RP {{bonus_afiliasi|intcomma}}</p>
+                                                </div>
+                                                <div class="modal fade" id="exampleModal6" tabindex="-1"
+                                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered modal-sm">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title">Withdrawal Bonus Afiliasi</h5>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="row mb-3">
+                                                                    <div class="col-12">
+                                                                        <div class="col-12">
+                                                                            <div class="form-group">
+                                                                                <input type="number"
+                                                                                       class="form-control"
+                                                                                       id="wd-amt"
+                                                                                       placeholder="100.000">
+
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-12">
+                                                                            <button class="btn btn-primary btn-block"
+                                                                                    id="wd-btn">
+                                                                                Withdraw
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                    <div class="card">
+                                        <div class="card-body px-3 py-4-5">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="stats-icon green">
+                                                        <i class="iconly-boldAdd-User"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <h6 class="text-muted font-semibold">
+                                                        Total ROI
+                                                    </h6>
+                                                    <p style="color: black;">RP {{roi|intcomma}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="{% static 'assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js' %}"></script>
+<script src="{% static 'assets/js/bootstrap.bundle.min.js' %}"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+<script src="{% static 'assets/js/extensions/sweetalert.min.js' %}"></script>
+<script src="{% static 'assets/js/main.js' %}"></script>
+<script>
+var base_url = window.location.origin
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+var base_url = window.location.origin
+const csrftoken = getCookie('csrftoken');
+
+	$(document).ready(function(){
+		var date_input=$('input[name="date"]'); //our date input has the name "date"
+		var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+		date_input.datepicker({
+			format: 'mm/dd/yyyy',
+			container: container,
+			todayHighlight: true,
+			autoclose: true,
+		})
+
+	$("#star-btn").click(function(){
+	    var jenis = $(this).attr('data-jenis')
+	    var nominal = $("#star-amt").val()
+	    var data = {jenis,nominal}
+	    $.ajax({
+        type: "POST",
+        url: base_url + "/transaction/invest/",
+        headers: { "X-CSRFToken": csrftoken },
+        data: data,
+        dataType: "json",
+        success: function (data) {
+            setTimeout(location.reload.bind(location), 2000);
+            swal(data,'','success')
+        },
+        error: function (errMsg) {
+           swal("Error",errMsg.responseText,'error')
+
+        },
+      });
+	})
+
+	$("#vip-btn").click(function(){
+	    var jenis = $(this).attr('data-jenis')
+	    var nominal = $("#vip-amt").val()
+	    var data = {jenis,nominal}
+	    $.ajax({
+        type: "POST",
+        url: base_url + "/transaction/invest/",
+        headers: { "X-CSRFToken": csrftoken },
+        data: data,
+        dataType: "json",
+        success: function (data) {
+            setTimeout(location.reload.bind(location), 2000);
+            swal(data,'','success')
+        },
+        error: function (errMsg) {
+           swal("Error",errMsg.responseText,'error')
+        },
+      });
+	})
+
+      $("#depo-bca-btn").click(function(){
+        data = $('#depo-bca').serialize()
+        console.log(data)
+            $.ajax({
+            type: "POST",
+            url: base_url + "/transaction/deposit/",
+            headers: { "X-CSRFToken": csrftoken },
+            data: data,
+            dataType: "json",
+            success: function (data) {
+                setTimeout(location.reload.bind(location), 2000);
+                swal(data,'','success')
+            },
+            error: function (errMsg) {
+               swal("Error",errMsg.responseText,'error')
+            },
+          });
+      })
+
+      $("#depo-mandiri-btn").click(function(){
+        data = $('#depo-mandiri').serialize()
+        console.log(data)
+            $.ajax({
+            type: "POST",
+            url: base_url + "/transaction/deposit/",
+            headers: { "X-CSRFToken": csrftoken },
+            data: data,
+            dataType: "json",
+            success: function (data) {
+                setTimeout(location.reload.bind(location), 2000);
+                swal(data,'','success')
+            },
+            error: function (errMsg) {
+               swal("Error",errMsg.responseText,'error')
+            },
+          });
+      })
+
+      $("#wd-btn").click(function(){
+        var nominal = $('#wd-amt').val()
+        if (data == '' || data < 100000) {
+            return swal("error",'Minimal Withdraw Bonus Afiliasi adalah 100.000','error')
+        }
+        var data = {nominal}
+            $.ajax({
+            type: "POST",
+            url: base_url + "/transaction/withdraw/",
+            headers: { "X-CSRFToken": csrftoken },
+            data: data,
+            dataType: "json",
+            success: function (data) {
+                setTimeout(location.reload.bind(location), 2000);
+                swal(data,'','success')
+            },
+            error: function (errMsg) {
+               swal("Error",errMsg.responseText,'error')
+            },
+          });
+      })
+
+	})
+
+</script>
+<!-- Include Date Range Picker -->
+
+</body>
+</html>

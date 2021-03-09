@@ -1,0 +1,123 @@
+{% load static %}
+{% load humanize %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Admin Dashboard OneClub</title>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com"/>
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    <link
+            href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap"
+            rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.css' %}"/>
+    <link rel="stylesheet" href="{% static 'assets/vendors/iconly/bold.css' %}"/>
+    <link
+            rel="stylesheet"
+            href="{% static 'assets/vendors/perfect-scrollbar/perfect-scrollbar.css' %}"
+    />
+    <link
+            rel="stylesheet"
+            href="{% static 'assets/vendors/bootstrap-icons/bootstrap-icons.css' %}"
+    />
+    <link rel="stylesheet" href="{% static 'assets/css/app.css' %}"/>
+    <link
+            rel="shortcut icon"
+            href="{% static 'assets/images/favicon.svg' %}"
+            type="image/x-icon"
+    />
+</head>
+
+<body>
+<div id="app">
+    {% include "snippets/sidebar.html" %}
+    <div id="main" class="layout-navbar">
+        {% include "snippets/topbar.html" %}
+        <!-- CONTENT -->
+        <div id="main-content">
+            <div class="page-heading">
+                <div class="page-content">
+                    <section class="row">
+
+                    </section>
+                    <div class="page-heading">
+                        <div class="page-title">
+                            <div class="row">
+                                <div class="col-12 col-md-6 order-md-1 order-last">
+                                    <h3>History Pembayaran</h3>
+                                    <p class="text-subtitle text-muted">Semua data Pembayaran yang pernah dilakukan ada disini</p>
+                                </div>
+                                <div class="col-12 col-md-6 order-md-2 order-first">
+                                    <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+                                        <ol class="breadcrumb">
+                                            <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                                            <li class="breadcrumb-item active" aria-current="page">Data Klien</li>
+                                        </ol>
+                                    </nav>
+                                </div>
+                            </div>
+                            <section class="section">
+                                <div class="card">
+
+                                    <div class="card-body">
+                                        <table class="table table-striped" id="table2">
+                                            <thead>
+                                            <tr><th>No</th>
+                                                <th>Nama</th>
+                                                <th>Nominal Purchase</th>
+                                                <th>Bank</th>
+                                                <th>Pembayaran</th>
+                                                <th>Tanggal</th>
+                                                <th>Status</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            {% for x in dt_pembayaran  %}
+                                            <tr>
+                                                <td>{{forloop.counter}}</td>
+                                                <td>{{x.invest.user.name}}</td>
+                                                <td>Rp.{{x.invest.nominal|floatformat:"2"|intcomma}}</td>
+                                                <td>{{x.invest.user.nama_bank|upper}}</td>
+                                                <td>Rp.{{x.nominal|floatformat:"2"|intcomma}}</td>
+                                                <td>{{x.created_at|date:"d-m-Y"}}</td>
+                                                <td>
+                                                    {%if x.status%}<span class="badge bg-primary">Sukses</span>{%elif x.status == False %}<span class="badge bg-danger">Gagal</span>{%else%}<span class="badge bg-warning">Pending</span>{%endif%}
+                                                </td>
+                                            </tr>
+                                            {% endfor  %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<script src="{% static 'assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js' %}"></script>
+<script src="{% static 'assets/js/bootstrap.bundle.min.js' %}"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+<script src="{% static 'assets/js/extensions/sweetalert.min.js' %}"></script>
+<script src="{% static 'assets/plugins/datatable/js/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'assets/js/main.js' %}"></script>
+
+<script>
+    $("#table2").DataTable()
+
+</script>
+<!-- Include Date Range Picker -->
+
+</body>
+</html>
