@@ -50,12 +50,12 @@ class Bonus_Generasi(models.Model):
         return f'{self.user} {self.bonus} {self.generasi}'
 
 class Bonus_Roi(models.Model):
-    user = models.ForeignKey(Data_User,on_delete=models.CASCADE,null=True,blank=True)
+    invest = models.ForeignKey(Invest,on_delete=models.CASCADE,null=True,blank=True)
     roi = models.FloatField(null=True,blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f'{self.user} {self.roi}'
+        return f'{self.invest.user} {self.roi}'
 
 class Weekly_Withdraw(models.Model):
     invest = models.ForeignKey(Invest,on_delete=models.CASCADE,null=True,blank=True)

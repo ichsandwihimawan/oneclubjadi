@@ -1,4 +1,4 @@
-from django.shortcuts import render
+import locale
 from django.utils import timezone
 from rest_framework import status
 from rest_framework.decorators import api_view
@@ -20,7 +20,7 @@ def investUser(request):
         return Response("Minimal Purchase untuk paket STAR adalah 1.000.000", status=status.HTTP_400_BAD_REQUEST)
     if jenis_inv.jenis == 'vip' and float(nominal) < 100000000:
         return Response("Minimal Purchase untuk paket STAR adalah 100.000.000", status=status.HTTP_400_BAD_REQUEST)
-    next_payment = timezone.now() + timezone.timedelta(weeks=1)
+    next_payment = timezone.now() + timezone.timedelta(weeks=1,days=1)
     inv = Invest.objects.create(user=user,
                                 jenis=jenis_inv,
                                 nominal=float(nominal),
@@ -82,7 +82,6 @@ def depositView(request):
                            )
     return Response('Deposit Sukses, Mohon tunggu admin melakukan konfirmasi')
 
-
 @api_view(['POST'])
 def withdrawView(request):
     print(request.data)
@@ -93,3 +92,21 @@ def withdrawView(request):
     user.bonus_afiliasi -= float(request.data.get('nominal'))
     user.save()
     return Response("Withdraw anda sedang di proses. mohon tunggu beberapa saat")
+
+@api_view(['GET'])
+def rincianBonusRoiView(request):
+    user =request.user.data_user
+    dt_roi = Bonus_Roi.objects.filter(invest__user=user).order_by('-id')
+    dt = {}
+    temp = []
+    for x,y in enumerate(dt_roi):
+        temp.append([
+            x+1,
+            'Rp. {:20,.2f}'.format(y.invest.nominal),
+            y.invest.jenis.jenis.upper(),
+            'Rp. {:20,.2f}'.format(y.roi),
+            y.created_at.strftime("%d-%m-%Y")
+        ])
+    dt['data'] = temp
+    return Response(dt)
+

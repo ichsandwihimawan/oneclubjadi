@@ -28,6 +28,7 @@ DEBUG = False
 # DEBUG_PROPAGATE_EXCEPTIONS = True
 ALLOWED_HOSTS = ['http://localhost:8000','https:oneclub.herokuapp.com']
 SECURE_SSL_REDIRECT = True
+
 # Application definition
 
 INSTALLED_APPS = [
