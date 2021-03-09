@@ -17,6 +17,7 @@ class Invest(models.Model):
     roi = models.FloatField(null=True,blank=True,default=0)
     roi_count = models.FloatField(null=True,blank=True,default=0)
     created_at = models.DateTimeField(auto_now_add=True)
+    next_payment = models.DateTimeField(null=True,blank=True)
     withdraw_pay = models.FloatField(null=True,blank=True,default=0)
     end_at = models.DateTimeField(null=True,blank=True)
     is_active = models.BooleanField(default=True)
