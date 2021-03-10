@@ -27,7 +27,7 @@ SECRET_KEY = 'es9jyo4w!8t7pux00p*ett4^a5_l(_nxv9oq5419)hdp8r6-u8'
 DEBUG = False
 # DEBUG_PROPAGATE_EXCEPTIONS = True
 ALLOWED_HOSTS = ['http://localhost:8000','https:oneclub.herokuapp.com']
-# SECURE_SSL_REDIRECT = True
+SECURE_SSL_REDIRECT = True
 
 # Application definition
 
