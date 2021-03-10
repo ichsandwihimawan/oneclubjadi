@@ -14,10 +14,16 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.shortcuts import redirect
 from django.urls import path,include
+
+def redDashboard(request):
+
+    return redirect('login')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('',redDashboard,name='landing-page'),
     path('dashboard/',include('user_management.urls')),
     path('transaction/',include('transaction.urls'))
 

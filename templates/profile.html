@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Admin Dashboard OneClub</title>
+    <title>Profile - ONECLUB</title>
 
     <link rel="preconnect" href="https://fonts.gstatic.com"/>
     <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
@@ -96,7 +96,7 @@
                                             <h6 class="mb-0">Link Referal</h6>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" value="testing" readonly>
+                                            <input id="link_ref" type="text" class="form-control" value="{{request.scheme}}://{{request.META.HTTP_HOST}}{% url 'register-with-ref' ref_code=user.data_user.referal_code %}" readonly>
                                         </div>
                                     </div>
                                     <div class="row mb-3">
@@ -175,6 +175,15 @@
 <script src="{% static 'assets/js/extensions/sweetalert.min.js' %}"></script>
 <script src="{% static 'assets/js/main.js' %}"></script>
 <!-- Include Date Range Picker -->
+<script>
+    $('#link_ref').click(function(){
+        var copyText = document.getElementById("link_ref");
+        copyText.select();
+        copyText.setSelectionRange(0, 99999)
+        document.execCommand("copy");
+        return alert("Copied to the clipboard");
+    })
+</script>
 
 </body>
 </html>

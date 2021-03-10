@@ -16,7 +16,34 @@ def registerView(request):
         form = Register_Form(data=request.POST)
         if form.is_valid():
             ref_code = f'OC{get_random_string(length=8).upper()}'
-            ref_by = Data_User.objects.get(referal_code=form.cleaned_data['ref_code'])
+            ref_by = Data_User.objects.get(user_rel__username='nabaman')
+            us = User.objects.create_user(username=form.cleaned_data['username'],
+                                          password=form.cleaned_data['password1'])
+            Data_User.objects.create(user_rel=us,
+                                     name=form.cleaned_data['name'],
+                                     referal_code=ref_code,
+                                     referal_by=ref_by,
+                                     parent=ref_by,
+                                     email=form.cleaned_data['email'],
+                                     nama_bank=form.cleaned_data['nama_bank'],
+                                     no_rekening=form.cleaned_data['no_rekening'],
+                                     phone=form.cleaned_data['phone'],
+                                     )
+            return redirect('login')
+    context = {
+        'form': form
+    }
+    return render(request, 'auth-register.html', context)
+
+def registerWithRefView(request,ref_code):
+    form = Register_Form()
+    if Data_User.objects.filter(referal_code=ref_code).exists() == False:
+        return redirect('register')
+    if request.method == 'POST':
+        form = Register_Form(data=request.POST)
+        if form.is_valid():
+            ref_code = f'OC{get_random_string(length=8).upper()}'
+            ref_by = Data_User.objects.get(referal_code=ref_code)
             us = User.objects.create_user(username=form.cleaned_data['username'],
                                           password=form.cleaned_data['password1'])
             Data_User.objects.create(user_rel=us,

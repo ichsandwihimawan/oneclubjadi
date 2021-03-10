@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Register - OneClub Dashboard</title>
+    <title>Register - ONECLUB</title>
     <link
             href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap"
             rel="stylesheet"
@@ -30,15 +30,6 @@
                 <h1 class="auth-title">Daftar</h1>
                 <form method="post">
                     {% csrf_token %}
-                    <div class="form-group position-relative has-icon-left mb-4">
-                        {{form.ref_code}}
-                        <div class="form-control-icon">
-                            <i class="bi-app bi-app"></i>
-                        </div>
-                    </div>
-                        {% if form.ref_code.errors%}
-                        <p class="text-danger">{{form.ref_code.errors|striptags}}</p>
-                        {% endif %}
                     <div class="form-group position-relative has-icon-left mb-4">
                         {{form.email}}
                         <div class="form-control-icon">

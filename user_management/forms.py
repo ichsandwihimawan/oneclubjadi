@@ -9,12 +9,6 @@ class Register_Form(forms.Form):
         "placeholder": "Nama Pemilik Rekening",
         "required":True
     }))
-    ref_code = forms.CharField(widget=forms.TextInput(attrs={
-        "type": "text",
-        "class": "form-control form-control-xl",
-        "placeholder": "Kode Referal",
-        "required": True
-    }))
 
     username = forms.CharField(widget=forms.TextInput(attrs={
         "type": "text",
@@ -70,12 +64,6 @@ class Register_Form(forms.Form):
         if Data_User.objects.filter(email__iexact=obj).exists():
             raise forms.ValidationError("Email sudah digunakan")
 
-        return obj
-
-    def clean_ref_code(self):
-        obj = self.cleaned_data['ref_code']
-        if Data_User.objects.filter(referal_code=obj).exists() == False:
-            raise forms.ValidationError("Kode Referal tidak ditemukan")
         return obj
 
     def clean_no_rekening(self):
