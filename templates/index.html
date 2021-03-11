@@ -297,6 +297,7 @@
                                                                                                                            id="basicInput"
                                                                                                                            placeholder="Nomor Rekening"
                                                                                                                            name="no_rekening"
+                                                                                                                           onKeyDown="if(event.keyCode === 32) return false;"
                                                                                                                     >
 
                                                                                                                 </div>
@@ -460,6 +461,7 @@
                                                                                                                            id="basicInput"
                                                                                                                            placeholder="Nomor Rekening"
                                                                                                                            name="no_rekening"
+                                                                                                                           onKeyDown="if(event.keyCode === 32) return false;"
                                                                                                                     >
 
                                                                                                                 </div>
@@ -692,7 +694,6 @@ function getCookie(name) {
     }
     return cookieValue;
 }
-var base_url = window.location.origin
 const csrftoken = getCookie('csrftoken');
 	$(document).ready(function(){
     $("#rincian-roi").click(function(){

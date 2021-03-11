@@ -57,33 +57,36 @@
                                 <div class="card">
 
                                     <div class="card-body">
-                                        <table class="table table-striped" id="table2">
-                                            <thead>
-                                            <tr><th>No</th>
-                                                <th>Nama</th>
-                                                <th>Username</th>
-                                                <th>No Telepon</th>
-                                                <th>Email</th>
-                                                <th>Tanggal Dibuat</th>
-                                                <th>Total Purchase</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            {% for x in dt_team  %}
-                                            <tr>
-                                                <td>{{forloop.counter}}</td>
-                                                <td>{{x.name}}</td>
-                                                <td>{{x.user_rel.username}}</td>
-                                                <td>{{x.phone}}</td>
-                                                <td>{{x.email}}</td>
-                                                <td>{{x.created_at|date:"d-m-Y"}}</td>
-                                                <td>
-                                                    Rp. {{x.total_purchase|floatformat:"2"|intcomma}}
-                                                </td>
-                                            </tr>
-                                            {% endfor  %}
-                                            </tbody>
-                                        </table>
+                                        <div class="table-responsive">
+                                            <table class="table table-striped" id="table2">
+                                                <thead>
+                                                <tr>
+                                                    <th>No</th>
+                                                    <th>Nama</th>
+                                                    <th>Username</th>
+                                                    <th>No Telepon</th>
+                                                    <th>Email</th>
+                                                    <th>Tanggal Dibuat</th>
+                                                    <th>Total Purchase</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                {% for x in dt_team %}
+                                                <tr>
+                                                    <td>{{forloop.counter}}</td>
+                                                    <td>{{x.name}}</td>
+                                                    <td>{{x.user_rel.username}}</td>
+                                                    <td>{{x.phone}}</td>
+                                                    <td>{{x.email}}</td>
+                                                    <td>{{x.created_at|date:"d-m-Y"}}</td>
+                                                    <td>
+                                                        Rp. {{x.total_purchase|floatformat:"2"|intcomma}}
+                                                    </td>
+                                                </tr>
+                                                {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
                             </section>
@@ -109,6 +112,7 @@
 
 <script>
     $("#table2").DataTable()
+
 </script>
 <!-- Include Date Range Picker -->
 

@@ -1,6 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth import login, logout, authenticate
-from django.core.paginator import Paginator, EmptyPage,PageNotAnInteger
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Sum
 from django.shortcuts import render, redirect
 from .forms import *
@@ -35,7 +35,8 @@ def registerView(request):
     }
     return render(request, 'auth-register.html', context)
 
-def registerWithRefView(request,ref_code):
+
+def registerWithRefView(request, ref_code):
     form = Register_Form()
     if Data_User.objects.filter(referal_code=ref_code).exists() == False:
         return redirect('register')
@@ -84,19 +85,25 @@ def logoutView(request):
 def dashboardView(request):
     user = request.user.data_user
     context = {
-        'total_star': Invest.objects.filter(is_active=True, jenis__jenis='star',user=user).aggregate(
-            Sum('nominal'))['nominal__sum'] if Invest.objects.filter(is_active=True, jenis__jenis='star',user=user).exists() else 0,
-        'total_vip': Invest.objects.filter(is_active=True, jenis__jenis='vip',user=user).aggregate(
-            Sum('nominal'))['nominal__sum'] if Invest.objects.filter(user=user,is_active=True, jenis__jenis='vip').exists() else 0,
+        'total_star': Invest.objects.filter(is_active=True, jenis__jenis='star', user=user).aggregate(
+            Sum('nominal'))['nominal__sum'] if Invest.objects.filter(is_active=True, jenis__jenis='star',
+                                                                     user=user).exists() else 0,
+        'total_vip': Invest.objects.filter(is_active=True, jenis__jenis='vip', user=user).aggregate(
+            Sum('nominal'))['nominal__sum'] if Invest.objects.filter(user=user, is_active=True,
+                                                                     jenis__jenis='vip').exists() else 0,
         'bonus_afiliasi': user.bonus_afiliasi,
         'roi': user.roi,
         'total_bonus': user.roi + user.bonus_afiliasi,
     }
+
     return render(request, 'index.html', context)
+
 
 def profielView(request):
 
-    return render(request,'profile.html')
+
+    return render(request, 'profile.html')
+
 
 def historyInvestView(request):
     all_invest = Invest.objects.filter(user=request.user.data_user).order_by('-id')
@@ -104,33 +111,35 @@ def historyInvestView(request):
     context = {
         'dt_invest': all_invest
     }
-    return render(request,'history_invest.html',context)
+    return render(request, 'history_invest.html', context)
+
 
 def historyPenarikan(request):
     dt_penarikan = Afiliasi_Withdraw.objects.filter(user=request.user.data_user).order_by('-id')
     context = {
-        'dt_penarikan':dt_penarikan
+        'dt_penarikan': dt_penarikan
     }
-    return render(request,'history_penarikan.html',context)
+    return render(request, 'history_penarikan.html', context)
+
 
 def historyPembayaran(request):
     dt_pembayaran = Weekly_Withdraw.objects.filter(invest__user=request.user.data_user).order_by('-id')
     context = {
-        'dt_pembayaran':dt_pembayaran
+        'dt_pembayaran': dt_pembayaran
     }
-    return render(request,'history_pembayaran.html',context)
+    return render(request, 'history_pembayaran.html', context)
 
-def teamsView(request,level):
+
+def teamsView(request, level):
     user = request.user.data_user
     us_level = user.level + level if level <= 3 else user.level + 1
     dt_team = user.get_descendants().filter(level=us_level)
     for x in dt_team:
-        tp = Invest.objects.filter(user=x,is_active=True).aggregate(Sum('nominal'))['nominal__sum'] if Invest.objects.filter(user=x,is_active=True).exists() else 0
+        tp = Invest.objects.filter(user=x, is_active=True).aggregate(Sum('nominal'))[
+            'nominal__sum'] if Invest.objects.filter(user=x, is_active=True).exists() else 0
         x.total_purchase = tp
     context = {
-        'dt_team':dt_team,
-        'level':level
+        'dt_team': dt_team,
+        'level': level
     }
-    return render(request,'teams.html',context)
-
-
+    return render(request, 'teams.html', context)
