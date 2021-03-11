@@ -43,13 +43,13 @@ def registerWithRefView(request, ref_code):
     if request.method == 'POST':
         form = Register_Form(data=request.POST)
         if form.is_valid():
-            ref_code = f'OC{get_random_string(length=8).upper()}'
+            gen_ref_code = f'OC{get_random_string(length=8).upper()}'
             ref_by = Data_User.objects.get(referal_code=ref_code)
             us = User.objects.create_user(username=form.cleaned_data['username'],
                                           password=form.cleaned_data['password1'])
             Data_User.objects.create(user_rel=us,
                                      name=form.cleaned_data['name'],
-                                     referal_code=ref_code,
+                                     referal_code=gen_ref_code,
                                      referal_by=ref_by,
                                      parent=ref_by,
                                      email=form.cleaned_data['email'],
