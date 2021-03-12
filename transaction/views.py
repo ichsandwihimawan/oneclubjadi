@@ -137,7 +137,7 @@ def changePasswordView(request):
             "Password Harus mengandung 1 Huruf Besar, 1 Angka, dan 1 Symbol. Minimal 8 Karakter",
             status=status.HTTP_400_BAD_REQUEST)
 
-    user = request.user.data_user
+    user = request.user
     user.set_password(new_password2)
     user.save()
     return Response('Password berhasil diganti')
