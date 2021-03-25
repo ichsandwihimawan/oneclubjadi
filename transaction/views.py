@@ -37,29 +37,29 @@ def investUser(request):
         if Invest.objects.filter(user=x, is_active=True).exists():
             if jenis_inv.jenis == 'star':
                 if user.level - x.level == 1:
-                    x.bonus_afiliasi += float(inv.nominal) * 0.05
+                    x.bonus_afiliasi += float(inv.nominal) * 0.07
                     x.save()
                     Bonus_Generasi.objects.create(for_user=x, from_user=user, bonus=float(nominal) * 0.05,
                                                   generasi=user.level - x.level)
                 elif user.level - x.level == 2:
-                    x.bonus_afiliasi += float(inv.nominal) * 0.03
+                    x.bonus_afiliasi += float(inv.nominal) * 0.02
                     x.save()
                     Bonus_Generasi.objects.create(for_user=x, from_user=user, bonus=float(nominal) * 0.03,
                                                   generasi=user.level - x.level)
                 elif user.level - x.level == 3:
-                    x.bonus_afiliasi += float(inv.nominal) * 0.02
+                    x.bonus_afiliasi += float(inv.nominal) * 0.01
                     x.save()
                     Bonus_Generasi.objects.create(for_user=x, from_user=user, bonus=float(nominal) * 0.02,
                                                   generasi=user.level - x.level)
             elif jenis_inv.jenis == 'vip':
                 if user.level - x.level == 1:
-                    x.bonus_afiliasi += float(inv.nominal) * 0.03
+                    x.bonus_afiliasi += float(inv.nominal) * 0.05
                     x.save()
                 elif user.level - x.level == 2:
-                    x.bonus_afiliasi += float(inv.nominal) * 0.01
+                    x.bonus_afiliasi += float(inv.nominal) * 0.03
                     x.save()
                 elif user.level - x.level == 3:
-                    x.bonus_afiliasi += float(inv.nominal) * 0.01
+                    x.bonus_afiliasi += float(inv.nominal) * 0.02
                     x.save()
 
     return Response("Purchase Berhasil dilakukan, Silahkan tunggu Profit anda berjalan :)", )
@@ -91,6 +91,8 @@ def depositView(request):
 def withdrawView(request):
     print(request.data)
     user = request.user.data_user
+    if float(request.data.get('nominal')) < 100000:
+        return Response('Minimal withdrawal adalah 100.000', status=status.HTTP_400_BAD_REQUEST)
     if request.data.get('nominal') == '':
         return Response('Mohon isi form yang kosong',status=status.HTTP_400_BAD_REQUEST)
     if user.bonus_afiliasi < float(request.data.get('nominal')):

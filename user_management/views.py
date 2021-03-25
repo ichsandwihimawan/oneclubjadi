@@ -35,7 +35,6 @@ def registerView(request):
     }
     return render(request, 'auth-register.html', context)
 
-
 def registerWithRefView(request, ref_code):
     form = Register_Form()
     if Data_User.objects.filter(referal_code=ref_code).exists() == False:
@@ -80,7 +79,6 @@ def loginView(request):
 def logoutView(request):
     logout(request)
     return redirect('login')
-
 
 def dashboardView(request):
     user = request.user.data_user

@@ -47,7 +47,7 @@ class Bonus_Generasi(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f'{self.user} {self.bonus} {self.generasi}'
+        return f'{self.for_user} {self.bonus} {self.generasi}'
 
 class Bonus_Roi(models.Model):
     invest = models.ForeignKey(Invest,on_delete=models.CASCADE,null=True,blank=True)
